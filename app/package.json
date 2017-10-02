@@ -1,0 +1,13 @@
+{
+  "name": "temperature-sensor-server",
+  "version": "1.0.0",
+  "description": "TODO",
+  "main": "rest-server.js",
+  "author": "Andrew Macheret <andrew.macheret@gmail.com>",
+  "license": "MIT",
+  "repository": "https://github.com/andrewmacheret/temperature-sensor-server",
+  "dependencies": {
+    "dgram": "^1.0.1",
+    "express": "^4.16.1"
+  }
+}
