@@ -2,6 +2,10 @@ const express = require('express')
 
 const temperatures = require('./udp-server')
 
+const mapToObject = (map) => {
+  return [...map].reduce((obj, entry) => {obj[entry[0]] = entry[1]; return obj}, {})
+}
+
 const app = express()
 
 const address = {
@@ -23,7 +27,7 @@ app.route('/')
 
 app.route('/temperatures')
   .get((req, res) => {
-    res.json({'temperatures': temperatures})
+    res.json({'temperatures': mapToObject(temperatures)})
   })
 
 app.listen(address.port)

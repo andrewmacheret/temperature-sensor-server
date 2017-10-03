@@ -7,7 +7,7 @@ $(() => {
     const draw = (data) => {
         if (JSON.stringify(data) == JSON.stringify(lastData)) return
         lastData = data
-        if (data.length === 0) {
+        if (Object.keys(data).length === 0) {
             $('#container').text('... no data ...') 
             return
         }
@@ -31,23 +31,13 @@ $(() => {
                 }
             },
             
-            legend: {
-                enabled: false
-            },
             credits: {
                 enabled: false
             },
             
-            plotOptions: {
-                spline: {
-                    marker: {
-                        enabled: true
-                    }
-                }
-            },
-            
             /*
             series: [{
+                name: 'be:ef@12:34:56:78:9a:bc',
                 data: [
                     [1506899236402, 24.6],
                     [1506899297044, 24.5],
@@ -57,7 +47,8 @@ $(() => {
                 ]
             }],
             */
-            series: [{data}],
+
+            series: Object.entries(data).map(series => ({ name: series[0], data: series[1] })),
 
             responsive: {
                 rules: [{

@@ -7,7 +7,9 @@
   "license": "MIT",
   "repository": "https://github.com/andrewmacheret/temperature-sensor-server",
   "dependencies": {
+    "binstruct": "^0.3.1",
     "dgram": "^1.0.1",
-    "express": "^4.16.1"
+    "express": "^4.16.1",
+    "macaddress": "^0.2.8"
   }
 }
