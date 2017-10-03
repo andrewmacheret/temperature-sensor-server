@@ -4,17 +4,21 @@ Designed to be collect data from this arduino-based sensor: [https://github.com/
 
 Requires [Docker](https://www.docker.com/get-docker).
 
-To run:
+To build from source (optional):
 
 ```
 # run npm install
 docker run --rm -it -v `pwd`/app:/app node:8-alpine sh -c 'cd app && npm install'
 
 # build the docker container
-docker build -t temperature-sensor-server .
+docker build -t andrewmacheret/temperature-sensor-server .
+```
 
+To run:
+
+```
 # run the docker container
-docker run -p 8080:8080/tcp -p 8030:8030/udp -v `pwd`/data:/data --rm -it --name temperature-sensor-server temperature-sensor-server
+docker run -p 8080:8080/tcp -p 8030:8030/udp -v `pwd`/data:/data --rm -it --name temperature-sensor-server andrewmacheret/temperature-sensor-server
 ```
 
 By default, listens on port 8030 for UDP temperature packets, and on port 8080 for web requests.

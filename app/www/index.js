@@ -1,17 +1,23 @@
 $(() => {
 
-    const intervalMillis = 1000
-
     let lastData = null
+    let interval = null
 
-    const draw = (data) => {
-        if (JSON.stringify(data) == JSON.stringify(lastData)) return
-        lastData = data
+    const draw = (data, redraw=false) => {
+        if (redraw) {
+            data = lastData
+        } else {
+            if (JSON.stringify(data) == JSON.stringify(lastData)) return
+            lastData = data
+        }
+
+        const unit = document.forms.options.temperatureUnit.value
+
         if (Object.keys(data).length === 0) {
             $('#container').text('... no data ...') 
             return
         }
-        console.log(data)
+        //console.log(data)
 
         Highcharts.chart('container', {
 
@@ -27,7 +33,7 @@ $(() => {
             },
             yAxis: {
                 title: {
-                    text: 'Temperature (°C)'
+                    text: `Temperature (°${ unit === 'celcius' ? 'C' : 'F' })`
                 }
             },
             
@@ -48,7 +54,11 @@ $(() => {
             }],
             */
 
-            series: Object.entries(data).map(series => ({ name: series[0], data: series[1] })),
+            series: Object.entries(data).map(series => ({ name: series[0], data: series[1].map(dataPoint => {
+                if (unit === 'celcius') return dataPoint
+                // fahrenheit
+                return [dataPoint[0], dataPoint[1] * 1.8 + 32]
+            }) })),
 
             responsive: {
                 rules: [{
@@ -67,9 +77,31 @@ $(() => {
 
         })
     }
-    window.setInterval(() => {
-        $.getJSON( "/temperatures", (data) => {
-            draw(data.temperatures)
-        })
-    }, intervalMillis)
+
+    // define function when the interval input changes
+    const onChangeInterval = () => {
+        if (interval !== null) clearInterval(interval)
+        $('#drew').html('...')
+
+        const intervalMillis = parseInt(document.forms.options.interval.value, 10)
+        interval = window.setInterval(() => {
+            $.getJSON( "/temperatures", (data) => {
+                draw(data.temperatures)
+                $('#drew').html('&#x2714;')
+            })
+        }, intervalMillis)
+    }
+
+    // define function when the temperature unit changes
+    const onChangeTemperatureUnit = () => {
+        // redraw
+        draw(null, true)
+    }
+
+    // engage listeners
+    document.forms.options.temperatureUnit.forEach(radio => { radio.addEventListener('click', onChangeTemperatureUnit, false) })
+    document.forms.options.interval.addEventListener('input', onChangeInterval, false)
+
+    // kick off by setting a new interval
+    onChangeInterval()
 })

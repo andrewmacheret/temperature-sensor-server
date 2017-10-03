@@ -5,10 +5,31 @@
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="index.js"></script>
+
+    <link rel="stylesheet" href="index.css">
+
+    <link rel="shortcut icon" href="/temperatures/graph/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/temperatures/graph/favicon.ico" type="image/x-icon">
   </head>
 <body>
 
 <div id="container"></div>
+
+<form name="options" id="options">
+  <div class="option-group">
+    <span id="refresh">Temperature Units:</span>
+    <input type="radio" name="temperatureUnit" id="fahrenheit" value="fahrenheit" checked="checked">
+    <label for="fahrenheit">Fahrenheit</label>
+    <input type="radio" name="temperatureUnit" id="celcius" value="celcius">
+    <label for="celcius">Celcius</label>
+  </div>
+  <div class="option-group">
+    <span id="refresh">Refresh Interval:</span>
+    <input type="text" name="interval" id="interval" value="1000">
+    <label for="interval">Milliseconds</label>
+    <span id="drew"></span>
+  </div>
+</form>
 
 </body>
 </html>
