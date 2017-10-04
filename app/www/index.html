@@ -17,17 +17,24 @@
 
 <form name="options" id="options">
   <div class="option-group">
-    <span id="refresh">Temperature Units:</span>
-    <input type="radio" name="temperatureUnit" id="fahrenheit" value="fahrenheit" checked="checked">
+    <span id="units-header">Temperature Units:</span>
+    <input type="radio" name="units" id="fahrenheit" value="fahrenheit" checked="checked">
     <label for="fahrenheit">Fahrenheit</label>
-    <input type="radio" name="temperatureUnit" id="celcius" value="celcius">
+    <input type="radio" name="units" id="celcius" value="celcius">
     <label for="celcius">Celcius</label>
   </div>
   <div class="option-group">
-    <span id="refresh">Refresh Interval:</span>
-    <input type="text" name="interval" id="interval" value="1000">
-    <label for="interval">Milliseconds</label>
+    <span id="refresh-header">Refresh Interval:</span>
+    <input type="text" name="refresh" id="refresh" value="10000">
+    <label for="refresh">Milliseconds</label>
     <span id="drew"></span>
+  </div>
+  <div class="option-group">
+    <span id="threshold-header">Threshold (°C) Low:</span>
+    <input type="text" name="threshold-low" id="threshold-low" value="">
+    <span id="threshold-header">High:</span>
+    <input type="text" name="threshold-high" id="threshold-high" value="">
+    <span id="updated-thresholds"></span>
   </div>
 </form>
 

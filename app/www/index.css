@@ -20,6 +20,15 @@ body, input {
   margin: 10px;
 }
 
-#drew {
+#drew, #updated-thresholds {
   margin-left: 5px;
 }
+
+#refresh {
+  width: 70px;
+}
+
+#threshold-low, #threshold-high {
+  width: 70px;
+}
+

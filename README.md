@@ -1,6 +1,6 @@
 # temperature-sensor-server
 
-Designed to be collect data from this arduino-based sensor: [https://github.com/baprozeniuk/ESP8266TempLogger](https://github.com/baprozeniuk/ESP8266TempLogger)
+Designed to collect data from this arduino-based sensor: [https://github.com/baprozeniuk/ESP8266TempLogger](https://github.com/baprozeniuk/ESP8266TempLogger)
 
 Requires [Docker](https://www.docker.com/get-docker).
 
@@ -18,7 +18,7 @@ To run:
 
 ```
 # run the docker container
-docker run -p 8080:8080/tcp -p 8030:8030/udp -v `pwd`/data:/data --rm -it --name temperature-sensor-server andrewmacheret/temperature-sensor-server
+docker run -p 8080:80/tcp -p 8030:30/udp -v `pwd`/data:/data --rm -it --name temperature-sensor-server andrewmacheret/temperature-sensor-server
 ```
 
 By default, listens on port 8030 for UDP temperature packets, and on port 8080 for web requests.

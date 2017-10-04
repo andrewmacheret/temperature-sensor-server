@@ -25,11 +25,12 @@ const maxQueueSize = 100
 const queues = new Map()
 
 // choose a port and host to listen to
-const PORT = 8030
+const PORT = 30
 const HOST = '0.0.0.0'
 
 // set up a log stream for all data heard
-const logStream = fs.createWriteStream(__dirname + '/../data/temperature.log', {'flags': 'a'});
+const dataPath = __dirname + '/../data'
+const logStream = fs.createWriteStream(dataPath + '/temperature.log', {'flags': 'a'})
 
 // set up the udp server
 const server = dgram.createSocket('udp4')

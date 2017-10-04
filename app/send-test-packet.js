@@ -4,7 +4,7 @@ const macaddress = require('macaddress')
 const binstruct = require('binstruct')
 
 // define port and host to send to
-const PORT = 8030
+const PORT = 30
 const HOST = '127.0.0.1'
 
 // function to convert a byte to a hex string
